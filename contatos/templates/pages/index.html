@@ -1,12 +1,57 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'style.css'%}">
     <title>Document</title>
 </head>
+
 <body>
-    <h1>Olá mundo</h1>
+    <h1>Agenda</h1>
+    <form action="{% url 'busca' %}">
+        <input type="text" name="search" placeholder="Buscar contato">
+        <button type="submit">Buscar</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>CPF</th>
+                <th>Ativo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contato in contatos %}
+            <tr>
+                <td>{{contato.id}}</td>
+                <td>{{contato.nome}}</td>
+                <td>{{contato.email}}</td>
+                <td>{{contato.cpf}}</td>
+                {% if contato.ativo == True %}
+                <td><i id="check" class="fa-solid fa-circle-check"></i></td>
+                {% else %}
+                <td><i id="x" class="fa-solid fa-circle-xmark"></i></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination">
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+    </div>
 </body>
+
 </html>
