@@ -79,3 +79,8 @@ button {
     width: 100px;
     height: 2rem;
 }
+
+.add-btn {
+    width: 800px;
+    margin: 40px auto;
+}

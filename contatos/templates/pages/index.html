@@ -19,6 +19,9 @@
         <input type="text" name="search" placeholder="Buscar contato">
         <button type="submit">Buscar</button>
     </form>
+    <div class="add-btn">
+        <a href="{% url 'adicionar' %}">Adicionar Contato</a>
+    </div>
     <table>
         <thead>
             <tr>
@@ -33,7 +36,7 @@
             {% for contato in contatos %}
             <tr>
                 <td>{{contato.id}}</td>
-                <td>{{contato.nome}}</td>
+                <td><a href="{% url 'detalhes' contato.id %}">{{contato.nome}}</a></td>
                 <td>{{contato.email}}</td>
                 <td>{{contato.cpf}}</td>
                 {% if contato.ativo == True %}

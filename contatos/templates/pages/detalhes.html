@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'detalhes.css'%}">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="cards">
+        <div class="card">
+            <img class="profile" src="{{contato.imagem.url}}" alt="">
+        </div>
+        <div class="infos">
+            <h2>Nome: {{contato.nome}}</h2>
+            <h3>CPF: {{contato.cpf}}</h3>
+            <h3>E-mail: {{contato.email}}</h3>
+            <h3>Telefone: {{contato.telefone}}</h3>
+            <h3>Alura: {{contato.altura}}</h3>  
+            <h3>{{contato.descricao}}</h3>
+            <h3>Nascimento: {{contato.data_nascimento}}</h3>
+            <h3>Ativo: {{contato.ativo}}</h3>
+        </div>
+        <div class="buttons">
+            <a href="{% url 'deletar' contato.id %}" class="del">Excluir</a>
+            <a href="" class="alt">Alterar</a>
+        </div>
+    </div>
+
+</body>
+
+</html>
