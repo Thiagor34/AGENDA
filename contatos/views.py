@@ -3,7 +3,7 @@ from . models import Contatos
 
 # Create your views here.
 def index(request):
-    contatos = Contatos.objects.all()    
+    contatos = Contatos.objects.all().order_by('-id')   
     return render(request, 'pages/index.html', {'contatos':contatos})
 
 
@@ -34,7 +34,44 @@ def adicionar(request):
         
         novo_contato = Contatos(nome=nome, cpf=cpf, email=email, telefone=telefone, altura=altura, descricao=descricao, data_nascimento=data_nascimento,imagem=imagem, ativo=True)
         novo_contato.save()
-        redirect('home')
+        return redirect('home')
     
     else:
         return render(request, 'pages/adicionar.html')
+    
+    
+def editar(request, id):
+    contato = Contatos.objects.get(id=id)    
+    if request.method == 'POST':
+        nome = request.POST.get('nome')
+        cpf = request.POST.get('cpf')
+        email = request.POST.get('email')
+        telefone = request.POST.get('telefone')
+        altura = request.POST.get('altura')
+        descricao = request.POST.get('descricao')
+        data_nascimento = request.POST.get('data_nascimento')
+        imagem = request.FILES.get('imagem')
+        ativo = request.POST.get('ativo')
+
+        if ativo == None:
+            ativo = False
+        else:
+            ativo = True
+        
+        contato.nome = nome
+        contato.cpf = cpf
+        contato.email = email
+        contato.telefone = telefone
+        contato.data = data_nascimento
+        contato.imagem = imagem
+        contato.altura = altura
+        contato.descricao = descricao
+        contato.ativo = ativo
+
+        contato.save()  
+              
+        return redirect('home')
+       
+    else:
+            
+        return render(request, 'pages/editar.html', {'contato':contato})

@@ -21,6 +21,10 @@
     </form>
     <div class="add-btn">
         <a href="{% url 'adicionar' %}">Adicionar Contato</a>
+        <div class="filter-btn">
+            <a class="ativo" href="{% url 'adicionar' %}">Ativos</a>
+            <a class="inativo" href="{% url 'adicionar' %}">Inativos</a>
+        </div>
     </div>
     <table>
         <thead>

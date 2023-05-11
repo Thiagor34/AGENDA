@@ -1,0 +1,62 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    text-decoration: none;
+}
+
+body {
+    background-color: rgb(176, 179, 177);
+}
+
+h1 {
+    text-align: center;
+    margin: 40px;
+}
+
+form {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 40px auto;
+    gap: 10px;
+}
+
+form > input {
+    width: 500px;
+    height: 40px;
+    padding-left: 10px;
+}
+
+.menor {
+    width: 500px;
+}
+
+.menor > input{
+    width: 190px;
+    height: 40px;
+    display: flex;
+    margin: 10px 0;
+    padding-left: 10px;
+    gap: 10px;
+}
+
+form > button {
+    width: 100px;
+    height: 40px;
+}
+
+p {
+    font-size: 20px;
+}
+
+
+.salvar {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(40, 185, 40);
+}
