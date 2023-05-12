@@ -12,6 +12,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Document</title>
 </head>
 
@@ -22,15 +25,39 @@
         <input class="cpf" name="cpf" value="{{contato.cpf}}" type="text" placeholder="Digite o CPF">
         <input name="email" value="{{contato.email}}" type="text" placeholder="Digite o e-mail">
         <input name="descricao" value="{{contato.descricao}}" type="text" placeholder="Descrição">
-        <input name="imagem" type="file">
-        <div class="menor">
-            <input class="telefone" name="telefone" value="{{contato.telefone}}" type="text" placeholder="Telefone">
-            <input class="altura" name="altura" value="{{contato.altura}}" type="text" placeholder="Altura">
-            <input name="data_nascimento" value="{{contato.data_nascimento | date:'Y-m-d' }}" type="date">
-            <p>Ativo: <input class="check" name="ativo" type="checkbox" {% if contato.ativo == True %} checked {% endif %}></p>
+        <div class="baixo">
+            <div class="menor">
+                <input class="telefone" name="telefone" value="{{contato.telefone}}" type="text" placeholder="Telefone">
+                <input class="altura" name="altura" value="{{contato.altura}}" type="text" placeholder="Altura">
+                <input name="data_nascimento" value="{{contato.data_nascimento | date:'Y-m-d' }}" type="date">
+                <p>Ativo: <input class="check" name="ativo" type="checkbox" {% if contato.ativo == True %} checked {% endif %}></p>
+            </div>
+            <div class="direito">
+                <div class="direito_img">
+                    <img class="img_input" src="" alt="">
+                </div>
+                <div class="direito_input">
+                    {% if contato.imagem %}
+                    <label for="img"><i class="fa-solid fa-upload"></i> Foto</label>
+                    <input id="img" class="imagem" name="imagem" value="{{contato.imagem.url}}" type="file" accept="imagem/*">
+                    {% else %}
+                    <input id="img" class="imagem" name="imagem" type="file" accept="imagem/*">
+                    {% endif %}
+                </div>
+            </div>
         </div>
         <button class="salvar" type="submit">Salvar</button>
     </form>
+    <img class="img_input" src="" alt="">
+
+    <script>
+        let img = document.querySelector('#img')
+        let img_input = document.querySelector('.img_input')
+
+        img.addEventListener('change', function () {
+            img_input.src = window.URL.createObjectURL(this.files[0])
+        })
+    </script>
 </body>
 
 <script>

@@ -31,10 +31,34 @@ form > input {
     padding-left: 10px;
 }
 
-.menor {
-    width: 500px;
+.baixo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
+.menor {
+    width: 250px;
+}
+
+.direito {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.direito_img {
+    border: 1px solid black;
+    display: flex;
+    width: 150px;
+    height: 150px;
+}
+
+.direito_input {
+    display: flex;
+    justify-content: center;
+}
 .menor > input{
     width: 190px;
     height: 40px;
@@ -42,6 +66,10 @@ form > input {
     margin: 10px 0;
     padding-left: 10px;
     gap: 10px;
+}
+
+.imagem {
+    display: none;
 }
 
 form > button {
@@ -60,3 +88,4 @@ p {
     color: white;
     background-color: rgb(40, 185, 40);
 }
+

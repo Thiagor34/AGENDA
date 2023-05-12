@@ -1,7 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from . models import Contatos
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
+@login_required(redirect_field_name='login')
 def index(request):
     contatos = Contatos.objects.all().order_by('-id')   
     return render(request, 'pages/index.html', {'contatos':contatos})
@@ -13,7 +16,8 @@ def search(request):
     return render(request, 'pages/index.html', {'contatos':contatos})
 
 def detalhes(request, id):
-    contato = Contatos.objects.get(id=id)
+    # contato = Contatos.objects.get(id=id)
+    contato = get_object_or_404(Contatos, id=id)
     return render(request, 'pages/detalhes.html', {'contato':contato})
 
 def deletar(request, id):
@@ -63,7 +67,8 @@ def editar(request, id):
         contato.email = email
         contato.telefone = telefone
         contato.data = data_nascimento
-        contato.imagem = imagem
+        if imagem != None:
+            contato.imagem = imagem
         contato.altura = altura
         contato.descricao = descricao
         contato.ativo = ativo

@@ -7,20 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{% static 'style.css'%}">
     <title>Document</title>
 </head>
 
 <body>
-    <h1>Agenda</h1>
+    <div class="navbar">
+        <div class="titulo">
+            <h1>Agenda</h1>
+        </div>
+        <div class="logout">
+            <a href="{% url 'logout' %}">SAIR</a>
+        </div>
+    </div>
     <form action="{% url 'busca' %}">
         <input type="text" name="search" placeholder="Buscar contato">
         <button type="submit">Buscar</button>
     </form>
     <div class="add-btn">
-        <a href="{% url 'adicionar' %}">Adicionar Contato</a>
+        <a class="adicionar" href="{% url 'adicionar' %}">Adicionar Contato</a>
         <div class="filter-btn">
             <a class="ativo" href="{% url 'adicionar' %}">Ativos</a>
             <a class="inativo" href="{% url 'adicionar' %}">Inativos</a>
