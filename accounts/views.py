@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
+from django.contrib import messages
+from django.contrib.auth.models import User 
 
 # Create your views here.
 
@@ -21,3 +23,17 @@ def user_login(request):
 def user_logout(request):
     auth.logout(request)
     return redirect('login')
+
+def cadastro(request):
+    
+    if request.method == 'POST':
+        user = request.POST['username']
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        re_password = request.POST.get('re-password')
+        
+        if password == re_password:
+            User.objects.create_user(username=user, password=password, email=email)
+            return redirect('login')
+    else:
+        return render(request, 'pages/cadastro.html')

@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(redirect_field_name='login')
 def index(request):
-    contatos = Contatos.objects.all().order_by('-id')   
+    contatos = Contatos.objects.filter(usuario_id=request.user.id).order_by('-id')   
     return render(request, 'pages/index.html', {'contatos':contatos})
 
 
@@ -36,7 +36,7 @@ def adicionar(request):
         data_nascimento = request.POST.get('data_nascimento')
         imagem = request.FILES.get('imagem')
         
-        novo_contato = Contatos(nome=nome, cpf=cpf, email=email, telefone=telefone, altura=altura, descricao=descricao, data_nascimento=data_nascimento,imagem=imagem, ativo=True)
+        novo_contato = Contatos(usuario_id=request.user.id,nome=nome, cpf=cpf, email=email, telefone=telefone, altura=altura, descricao=descricao, data_nascimento=data_nascimento,imagem=imagem, ativo=True)
         novo_contato.save()
         return redirect('home')
     
