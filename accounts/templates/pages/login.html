@@ -13,6 +13,11 @@
     <form method="POST"> {% csrf_token %}
         <input name="username" type="text" name="" id="" placeholder="Usuário">
         <input name="password" type="password" name="" id="" placeholder="Senha">
+        {% if messages %}
+            {% for message in messages %}
+            <h4>{{message}}</h4>
+            {% endfor %}
+        {% endif %}
         <button type="submit">Entrar</button>
     </form>
     <a href="{% url 'cadastro' %}">Cadastre-se!</a>    

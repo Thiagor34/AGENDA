@@ -12,6 +12,7 @@ def user_login(request):
         check_user = auth.authenticate(username=username, password=password)
         
         if check_user == None:
+            messages.error(request, message='Usuário ou senha inválidos')
             return redirect('login')
         else:
             auth.login(request, check_user)
